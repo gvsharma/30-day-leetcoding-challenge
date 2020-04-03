@@ -1,0 +1,43 @@
+Day 3
+
+https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3285/
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        int max = Integer.MIN_VALUE;
+        int low = 0;
+        int high = 0;
+        if(n == 1) {
+            max = nums[0];
+        }
+        for(int i=0;i<n;i++) {
+            if(i == n-1) {
+                low = nums[i];
+                int s = low;
+                if(max < s) {
+                    max = s;
+                }
+                break;
+            } 
+            low = nums[i];
+            int sum = low;
+            for(int j=i; j<n; j++) {
+                high = nums[j];
+                if(i == j) {
+                    sum = high;//or low
+                } else {
+                    sum = sum + high;
+                }
+                
+                if(max < sum) {
+                    max = sum;
+                } else {
+                    // break;
+                }
+            }
+            
+        }
+        return max;
+    }
+}
