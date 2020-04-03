@@ -1,0 +1,38 @@
+Day 2
+
+https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/528/week-1/3284/
+
+class Solution {
+    public boolean isHappy(int n) {
+        int sum = 0;
+        boolean res1 = false;
+        int res = isHappyNumber(sum, n);
+        HashSet<Integer> hs = new HashSet<>();
+        while(true) {
+            if(res == 1) {
+                res1 = true;
+                break;
+            } else {
+                if(hs.contains(res)) {
+                    res1 = false;
+                    break;
+                }
+                hs.add(res);
+                res = isHappyNumber(sum, res);
+            }
+        }
+        return res1;
+    }
+    
+    public int isHappyNumber(int sum, int n) {
+        if(n == 1) {
+            return 1;
+        }
+        while (n >= 1) {
+            final int digit = n % 10;
+            n = n/10;
+            sum += (digit * digit);
+        }
+        return sum;
+    }
+}
